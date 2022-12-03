@@ -5,46 +5,45 @@ const rules = {
     points: 1,
     win: 'Z', // To win with A, the other one should choose
     lose: 'Y', // To lose with A, the other one should choose
-    tie: 'X'
+    draw: 'X'
   },
   B: {
     points: 2,
     win: 'X',
     lose: 'Z',
-    tie: 'Y'
+    draw: 'Y'
   },
   C: {
     points: 3,
     win: 'Y',
     lose: 'X',
-    tie: 'Z'
+    draw: 'Z'
   },
   X: {
     points: 1,
     win: 'C',
     lose: 'B',
-    tie: 'A'
+    draw: 'A'
   },
   Y: {
     points: 2,
     win: 'A',
     lose: 'C',
-    tie: 'B'
+    draw: 'B'
   },
   Z: {
     points: 3,
     win: 'B',
     lose: 'A',
-    tie: 'C'
+    draw: 'C'
   },
 }
 
 const score = {
   win: 6,
-  tie: 3,
+  draw: 3,
   lose: 0
 }
-
 
 export function part1(input) {
   let matchs = input.split(/\r?\n/).map(match => { return { enemy: match.charAt(0), me: match.charAt(2) } })
@@ -71,11 +70,11 @@ function getResults(match) {
     results.win = 'me'
     results.enemyPoints = enemyChoice.points + score.lose;
     results.myPoints = myChoice.points + score.win;
-  } else if(enemyChoice.tie === match.me){
-    //we tie
+  } else if(enemyChoice.draw === match.me){
+    //we draw
     results.win = 'none'
-    results.enemyPoints = enemyChoice.points + score.tie;
-    results.myPoints = myChoice.points + score.tie;
+    results.enemyPoints = enemyChoice.points + score.draw;
+    results.myPoints = myChoice.points + score.draw;
   }
 
   return results
