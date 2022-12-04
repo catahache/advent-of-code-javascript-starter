@@ -11,7 +11,7 @@ export function part1(input) {
   const compartments = compartmentalize(rucksacks);
   const repeatedLetters = getRepetition(compartments);
   const pioritiesList = []
-  repeatedLetters.forEach((letter, i) => {
+  repeatedLetters.forEach(letter => {
     pioritiesList.push(alphabetPosition(letter))
   })
   return pioritiesList.reduce((a, b) => {
